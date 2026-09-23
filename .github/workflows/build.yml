@@ -16,6 +16,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set lowercase image name
+        run: echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/ai-llm-api" >> "$GITHUB_ENV"
+
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -27,7 +30,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ toLower(github.repository_owner) }}/ai-llm-api
+          images: ${{ env.IMAGE }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -35,6 +38,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ toLower(github.repository_owner) }}/ai-llm-api:latest
-            ghcr.io/${{ toLower(github.repository_owner) }}/ai-llm-api:${{ github.sha }}
+            ${{ env.IMAGE }}:latest
+            ${{ env.IMAGE }}:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
