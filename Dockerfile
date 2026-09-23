@@ -5,6 +5,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# llama-cpp-python：用官方预编译 CPU wheel，避免在镜像内源码编译（无需 cmake/gcc）
+RUN pip install --no-cache-dir --only-binary=llama-cpp-python \
+        llama-cpp-python \
+        --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+
 COPY app.py .
 
 ENV MODEL_PATH=/models/model.gguf \
