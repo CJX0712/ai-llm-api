@@ -1,5 +1,11 @@
 # AI LLM API
 
+<p align="center">
+  <a href="https://github.com/CJX0712/ai-llm-api/actions/workflows/build.yml"><img src="https://github.com/CJX0712/ai-llm-api/actions/workflows/build.yml/badge.svg" alt="ci"></a>
+  <a href="https://github.com/CJX0712/ai-llm-api/releases"><img src="https://img.shields.io/github/v/release/CJX0712/ai-llm-api?sort=semver" alt="release"></a>
+  <img src="https://img.shields.io/badge/author-%E6%99%A8%E6%98%9F-1f6feb" alt="author">
+</p>
+
 端到端可运行的本地 LLM 推理服务。FastAPI + llama-cpp-python，CPU 推理，镜像自动推送到 GitHub Packages (`ghcr.io`)。
 
 作者：晨星
